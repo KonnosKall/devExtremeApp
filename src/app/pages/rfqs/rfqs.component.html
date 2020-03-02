@@ -1,0 +1,39 @@
+<dx-button stylingMode="contained" text="Create RFQ" icon="plus" type="normal" (onClick)="createRecord()">
+</dx-button>
+<dx-data-grid id="gridContainer" [dataSource]="dataSource" keyExpr="_id" [allowColumnReordering]="true"
+    [showBorders]="true" (onEditingStart)="logEvent('EditingStart')" (onInitNewRow)="logEvent('InitNewRow')"
+    (onRowInserting)="logEvent('RowInserting')" (onRowInserted)="logEvent('RowInserted')"
+    (onRowUpdating)="logEvent('RowUpdating')" (onRowUpdated)="logEvent('RowUpdated')"
+    (onRowRemoving)="logEvent('RowRemoving')" (onRowRemoved)="logEvent('RowRemoved')">
+    <dxo-paging [enabled]="true"></dxo-paging>
+    <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false">
+    </dxo-editing>
+    <dxi-column dataField="_id" caption="ID" [width]="50"></dxi-column>
+    <dxi-column dataField="start_date" caption="Start Date" dataType="date"></dxi-column>
+    <dxi-column dataField="end_date" caption="End Date" dataType="date"></dxi-column>
+    <dxi-column dataField="location" caption="Location"></dxi-column>
+    <dxi-column dataField="category" caption="Category"></dxi-column>
+    <dxi-column dataField="notes" caption="Notes"></dxi-column>
+    <dxi-column dataField="status" caption="Status">
+        <dxo-lookup [dataSource]="states" displayExpr="title" valueExpr="title">
+        </dxo-lookup>
+    </dxi-column>
+    <dxi-column type="buttons" [width]="110" caption="Actions">
+        <dxi-button name="view" icon="file" (onClick)="viewRecord(dataSource[0]._id)"></dxi-button>
+        <dxi-button name="update" icon="edit" (onClick)="updateRecord(dataSource[0]._id)"></dxi-button>
+        <dxi-button name="delete" icon="trash" (onClick)="deleteRecord(dataSource[0]._id)"></dxi-button>
+    </dxi-column>
+    
+</dx-data-grid>
+
+<!-- <div id="events">
+    <div>
+        <div class="caption">
+            Fired events
+        </div>
+        <dx-button id="clear" text="Clear" (onClick)="clearEvents()"></dx-button>
+    </div>
+    <ul>
+        <li *ngFor="let event of events">{{event}}</li>
+    </ul>
+</div> -->

@@ -1,0 +1,6 @@
+.navbar-nav{
+    flex-direction: row;
+}
+.nav-item .nav-link{
+    color:#000;
+}
